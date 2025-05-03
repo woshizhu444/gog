@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>教育版账户注册</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>教育版账户注册</h1>
+        <p>请使用真实信息注册，信息仅用于生成账户，不会泄露。</p>
+
+        <form id="registration-form">
+            <div class="form-group">
+                <label for="last-name">姓氏 (英语):</label>
+                <input type="text" id="last-name" name="lastName" required>
+            </div>
+
+            <div class="form-group">
+                <label for="first-name">名字 (英语):</label>
+                <input type="text" id="first-name" name="firstName" required>
+            </div>
+
+<div class="form-group">
+                <label for="username">用户名:</label>
+                <div class="username-group">
+                    <input type="text" id="username" name="username" required>
+                    <span class="domain-suffix">@mom.edu.kg</span>
+                </div>
+                <small>只能包含小写字母、数字、点(.)和短横线(-)。邮箱后缀固定为 @mom.edu.kg。</small>
+            </div>
+            <div class="form-group">
+                <label for="password">设置密码:</label>
+                <input type="password" id="password" name="password" required minlength="8">
+                <small>密码至少需要8位。</small>
+            </div>
+
+            <div class="form-group">
+                <label for="confirm-password">确认密码:</label>
+                <input type="password" id="confirm-password" name="confirmPassword" required minlength="8">
+            </div>
+
+             <div class="form-group">
+                 <label for="recovery-email">辅助邮箱:</label>
+                 <input type="email" id="recovery-email" name="recoveryEmail" required>
+            </div>
+
+            <button type="submit">注册</button>
+        </form>
+
+        <!-- 结果消息将通过弹窗显示 -->
+        <div id="loading-indicator" style="display: none; margin-top: 10px;">处理中...</div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

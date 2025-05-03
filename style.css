@@ -1,0 +1,138 @@
+body {
+    font-family: sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+p {
+    text-align: center;
+    color: #666;
+    margin-bottom: 20px;
+    font-size: 0.9em;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+small {
+    display: block;
+    margin-top: 3px;
+    font-size: 0.8em;
+    color: #888;
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+#result-message {
+    text-align: center;
+    font-weight: bold;
+}
+
+#result-message.success {
+    color: green;
+}
+
+#result-message.error {
+    color: red;
+}
+
+#loading-indicator {
+    text-align: center;
+    color: #555;
+}
+/* Styles for username input group */
+.username-group {
+    display: flex;
+    align-items: center; /* Vertically align items */
+    border: 1px solid #ccc; /* Shared border */
+    border-radius: 4px;
+    overflow: hidden; /* Keep children within rounded corners */
+}
+
+.username-group input[type="text"] {
+    flex-grow: 1; /* Allow input to take available space */
+    border: none; /* Remove individual border */
+    border-radius: 0; /* Remove individual radius */
+    box-shadow: none; /* Remove individual focus shadow */
+    padding-right: 5px; /* Add some space before suffix */
+    width: auto; /* Override the 100% width */
+}
+
+.username-group input[type="text"]:focus {
+     /* Remove focus outline within the group, parent border handles focus */
+    outline: none;
+    box-shadow: none;
+    border-color: transparent; /* Prevent default focus border color */
+}
+
+/* Add focus style to the whole group */
+.username-group:focus-within {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+
+.username-group .domain-suffix {
+    padding: 10px;
+    background-color: #e9ecef; /* Light grey background */
+    color: #495057; /* Darker text */
+    white-space: nowrap; /* Prevent wrapping */
+    border-left: 1px solid #ccc; /* Separator line */
+}
