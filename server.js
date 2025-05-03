@@ -13,14 +13,37 @@ app.use(express.json()); // Parse JSON request bodies
 app.use(express.static('.')); // Serve static files (HTML, CSS, JS) from the current directory
 
 // --- Google Workspace API Setup ---
-const auth = new google.auth.GoogleAuth({
-    keyFile: process.env.GOOGLE_APPLICATION_CREDENTIALS, // Path from .env
+// --- Google Workspace API Setup ---
+let authOptions = {
     scopes: ['https://www.googleapis.com/auth/admin.directory.user'],
-    // Impersonate the admin user specified in .env
     clientOptions: {
         subject: process.env.GOOGLE_ADMIN_EMAIL
     }
-});
+};
+
+const credentialsEnvVar = process.env.GOOGLE_APPLICATION_CREDENTIALS;
+
+if (credentialsEnvVar && credentialsEnvVar.trim().startsWith('{')) {
+    // If the env var looks like a JSON object, parse it and use 'credentials'
+    try {
+        console.log("Attempting to parse GOOGLE_APPLICATION_CREDENTIALS as JSON content.");
+        authOptions.credentials = JSON.parse(credentialsEnvVar);
+    } catch (e) {
+        console.error("Failed to parse GOOGLE_APPLICATION_CREDENTIALS as JSON, falling back to keyFile:", e);
+        // Fallback to keyFile if JSON parsing fails (though unlikely if it starts with '{')
+        authOptions.keyFile = credentialsEnvVar;
+    }
+} else if (credentialsEnvVar) {
+    // Otherwise, assume it's a file path and use 'keyFile'
+    console.log("Using GOOGLE_APPLICATION_CREDENTIALS as keyFile path.");
+    authOptions.keyFile = credentialsEnvVar;
+} else {
+    console.error("GOOGLE_APPLICATION_CREDENTIALS environment variable is not set!");
+    // Handle error appropriately - maybe exit or throw
+    throw new Error("GOOGLE_APPLICATION_CREDENTIALS environment variable is required.");
+}
+
+const auth = new google.auth.GoogleAuth(authOptions);
 const admin = google.admin({ version: 'directory_v1', auth });
 const domain = process.env.GOOGLE_WORKSPACE_DOMAIN; // Domain from .env
 
