@@ -95,7 +95,7 @@ app.post('/register', async (req, res) => {
                 familyName: lastName,
             },
             password: password,
-            changePasswordAtNextLogin: true, // Force password change on first login
+            changePasswordAtNextLogin: false, // Do not force password change on first login
             // Include recovery email if provided by the user
             ...(recoveryEmail && { recoveryEmail: recoveryEmail }),
             // Store student ID using externalIds (type 'organization' is common)
